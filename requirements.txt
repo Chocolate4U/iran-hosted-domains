@@ -1,4 +1,4 @@
-requests
+requests==2.30.0
 urllib3<2
-beautifulsoup4
-tldextract
+beautifulsoup4==4.12.2
+tldextract==3.4.2
