@@ -65,9 +65,9 @@ jobs:
           git clone https://github.com/v2fly/domain-list-community
           rm -rf domain-list-community/data/*
           
-          mv output/ir_domains.txt domain-list-community/data/ir
-          mv output/other_domains.txt domain-list-community/data/other
-          mv output/ads.txt domain-list-community/data/ads
+          cp output/ir_domains.txt domain-list-community/data/ir
+          cp output/other_domains.txt domain-list-community/data/other
+          cp output/ads.txt domain-list-community/data/ads
           
           cd domain-list-community
           go run ./ --outputdir=../output
@@ -83,7 +83,7 @@ jobs:
 
           cd sing-geosite
           go run -v .
-          mv iran-geosite.db ../output/iran-geosite.db
+          mv iran-geosite.db ../output/geosite.db
 
       - name: Calculate checksum
         if: ${{ env.SHOULD_UPDATE }}
