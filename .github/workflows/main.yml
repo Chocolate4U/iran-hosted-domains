@@ -65,9 +65,10 @@ jobs:
           git clone https://github.com/v2fly/domain-list-community
           rm -rf domain-list-community/data/*
           
-          cp output/ir_domains.txt domain-list-community/data/ir
-          cp output/other_domains.txt domain-list-community/data/other
-          cp output/ads.txt domain-list-community/data/ads
+          mv output/ir_domains.txt domain-list-community/data/ir
+          mv output/other_domains.txt domain-list-community/data/other
+          mv output/ads.txt domain-list-community/data/ads
+          curl https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/light-onlydomains.txt --create-dirs -o domain-list-community/data/category-ads-all/category-ads-all.txt
           
           cd domain-list-community
           go run ./ --outputdir=../output
