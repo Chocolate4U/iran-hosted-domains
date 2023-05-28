@@ -52,8 +52,8 @@ def qv2ray(bypass_domains: Iterable[str], proxied_domains: Iterable[str], ads_do
     utils.save_to_file(consts.qv2ray_schema_path, json.dumps(schema))
 
 
-def clash(bypass_domains: Iterable[str], ads_domains: Iterable[str]):
-    text_config_other = yaml_config_other = text_config_ads = yaml_config_ads = (
+def clash(bypass_domains: Iterable[str], ads_domains: Iterable[str], ads_all_domains: Iterable[str]):
+    text_config_other = yaml_config_other = text_config_ads = yaml_config_ads = text_config_ads_all = yaml_config_ads_all = (
         "# Clash\n"
         "# Wiki: https://github.com/Dreamacro/clash/wiki/premium-core-features#rule-providers\n"
     )
@@ -62,12 +62,16 @@ def clash(bypass_domains: Iterable[str], ads_domains: Iterable[str]):
     yaml_config_other += "payload:\n" + "".join(f"  - '+.{domain}'\n" for domain in bypass_domains)
     text_config_ads += "".join(f"+.{domain}\n" for domain in ads_domains)
     yaml_config_ads += "payload:\n" + "".join(f"  - '+.{domain}'\n" for domain in ads_domains)
+    text_config_ads_all += "".join(f"+.{domain}\n" for domain in ads_all_domains)
+    yaml_config_ads_all += "payload:\n" + "".join(f"  - '+.{domain}'\n" for domain in ads_all_domains)
 
 
     utils.save_to_file(consts.clash_path_text_other, text_config_other)
     utils.save_to_file(consts.clash_path_yaml_other, yaml_config_other)
     utils.save_to_file(consts.clash_path_text_ads, text_config_ads)
     utils.save_to_file(consts.clash_path_yaml_ads, yaml_config_ads)
+    utils.save_to_file(consts.clash_path_text_ads, text_config_ads_all)
+    utils.save_to_file(consts.clash_path_yaml_ads, yaml_config_ads_all)
 
 
 def surge(bypass_domains: Iterable[str]):

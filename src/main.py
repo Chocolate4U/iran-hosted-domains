@@ -39,6 +39,7 @@ if __name__ == "__main__":
     # load other domains list
     proxy_domains = sorted(custom_domains["proxy"])
     ad_domains = get_domians.ads()
+    ad_all_domains = get_domians.ads_all()
 
     # Request data from sources and cleanup
     all_domains = collect_and_clean_domains(
@@ -54,12 +55,13 @@ if __name__ == "__main__":
 
     # Generate output files
     utils.save_to_file(consts.ad_domains_path, "\n".join(ad_domains))
+    utils.save_to_file(consts.ad_all_domains_path, "\n".join(ad_all_domains))
     utils.save_to_file(consts.ir_domains_path, "\n".join(ir_domains))
     utils.save_to_file(consts.other_domains_path, "\n".join(other_domains))
     utils.save_to_file(consts.all_domains_path, "\n".join(all_domains))
 
     create_config.qv2ray(other_domains, proxy_domains, ad_domains)
     create_config.shadowrocket(all_domains)
-    create_config.clash(other_domains, ad_domains)
+    create_config.clash(other_domains, ad_domains, ad_all_domains)
     create_config.surge(all_domains)    
     create_config.switchy_omega(other_domains)

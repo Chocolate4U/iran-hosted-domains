@@ -68,7 +68,7 @@ jobs:
           mv output/ir_domains.txt domain-list-community/data/ir
           mv output/other_domains.txt domain-list-community/data/other
           mv output/ads.txt domain-list-community/data/ads
-          curl https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/light-onlydomains.txt --create-dirs -o domain-list-community/data/category-ads-all
+          mv output/ads_all.txt domain-list-community/data/category-ads-all
           
           cd domain-list-community
           go run ./ --outputdir=../output

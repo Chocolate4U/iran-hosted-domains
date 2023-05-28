@@ -43,6 +43,12 @@ def ads() -> Iterable[str]:
     ads = filter(utils.letter_digit_hyphen, ads)
     return sorted(ads)
 
+def ads_all() -> Iterable[str]:
+    resp = requests.get(consts.ads_all_url)
+    resp.raise_for_status()
+    ads_all = resp.text
+    return sorted(ads_all)
+
 def v2fly(filename = "category-ir") -> Iterable[str]:
     resp = requests.get(consts.v2fly_base_url + filename)
     resp.raise_for_status()
